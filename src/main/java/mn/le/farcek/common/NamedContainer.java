@@ -14,13 +14,36 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package mn.le.farcek.common;
 
-package mn.le.farcek.common.objects;
+import java.util.HashMap;
+import java.util.Map;
+import mn.le.farcek.common.objects.FNamedObject;
 
 /**
  *
  * @author Farcek
+ * @param <T>
  */
-public interface FKeyedObject {
-    public String getKeyName();
+public class NamedContainer<T extends FNamedObject> extends HashMap<String, T> {
+
+    public NamedContainer<T> add(String name, T value) {
+        put(name, value);
+        return this;
+    }
+
+    public NamedContainer<T> add(T namedObject) {
+        put(namedObject.getName(), namedObject);
+        return this;
+    }
+
+    public NamedContainer<T> add(Map<String, T> mapParams) {
+        putAll(mapParams);
+        return this;
+    }
+
+    public T get(String key) {
+        return super.get(key);
+    }
+
 }
