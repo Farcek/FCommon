@@ -17,6 +17,7 @@
 package mn.le.farcek.common;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 import mn.le.farcek.common.objects.FNamedObject;
 
@@ -25,25 +26,24 @@ import mn.le.farcek.common.objects.FNamedObject;
  * @author Farcek
  * @param <T>
  */
-public class NamedContainer<T extends FNamedObject> extends HashMap<String, T> {
+public class NamedContainer<T extends FNamedObject> extends HashMap<String, T> implements Iterable<T> {
 
-    public NamedContainer<T> add(String name, T value) {
-        put(name, value);
-        return this;
-    }
-
-    public NamedContainer<T> add(T namedObject) {
+    public NamedContainer<T> set(T namedObject) {
         put(namedObject.getName(), namedObject);
         return this;
     }
 
-    public NamedContainer<T> add(Map<String, T> mapParams) {
-        putAll(mapParams);
+    public NamedContainer<T> set(Map<String, ? extends T> params) {
+        putAll(params);
         return this;
     }
 
-    public T get(String key) {
-        return super.get(key);
+    public T get(String name) {
+        return super.get(name);
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return super.values().iterator();
+    }
 }
