@@ -34,6 +34,20 @@ public class NamedContainer<T extends FNamedObject> extends HashMap<String, T> i
     }
 
     public NamedContainer<T> set(Map<String, ? extends T> params) {
+        if (params != null) {
+            putAll(params);
+        }
+        return this;
+    }
+
+    public NamedContainer<T> add(T namedObject) {
+        if (namedObject != null) {
+            put(namedObject.getName(), namedObject);
+        }
+        return this;
+    }
+
+    public NamedContainer<T> add(Map<String, ? extends T> params) {
         putAll(params);
         return this;
     }
@@ -45,5 +59,9 @@ public class NamedContainer<T extends FNamedObject> extends HashMap<String, T> i
     @Override
     public Iterator<T> iterator() {
         return super.values().iterator();
+    }
+
+    public Map<String, T> toMap() {
+        return this;
     }
 }
