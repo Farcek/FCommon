@@ -19,6 +19,7 @@ package mn.le.farcek.common.utils;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -192,5 +193,19 @@ public class FCollectionUtils {
             sb.append(it);
         }
         return sb.toString();
+    }
+    
+    public static class HashMapBuilder<K, V> {
+
+        private Map<K, V> map = new HashMap<>();
+
+        public HashMapBuilder put(K key, V value) {
+            map.put(key, value);
+            return this;
+        }
+
+        public Map<K, V> build() {
+            return map;
+        }
     }
 }

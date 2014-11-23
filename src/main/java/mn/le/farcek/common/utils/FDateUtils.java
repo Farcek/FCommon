@@ -42,8 +42,9 @@ public class FDateUtils {
 
     /**
      * return pattern yyyy-MM-dd HH:mm:ss
+     *
      * @param date
-     * @return 
+     * @return
      */
     public static String toString(Date date) {
         if (date == null) {
@@ -51,5 +52,12 @@ public class FDateUtils {
         }
         Format formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         return formatter.format(date);
+    }
+
+    public static Date addDay(Date date, int day) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(date);
+        c.add(Calendar.DATE, day);
+        return c.getTime();
     }
 }
