@@ -28,45 +28,37 @@ import java.util.Set;
 public class FCollectionUtils {
 
     public static <T> boolean has(T[] arrays, T value) {
-        if (arrays == null) {
+        if (arrays == null)
             return false;
-        }
-        if (value == null) {
+        if (value == null)
             return false;
-        }
-        for (T s : arrays) {
-            if (s.equals(value)) {
+        for (T s : arrays)
+            if (s.equals(value))
                 return true;
-            }
-        }
         return false;
     }
 
     public static <T> boolean notEmpty(T[] arrays) {
-        if (arrays == null) {
+        if (arrays == null)
             return false;
-        }
 
         return arrays.length > 0;
     }
 
     public static <T> boolean isEmpty(T[] arrays) {
-        if (arrays == null) {
+        if (arrays == null)
             return true;
-        }
         return arrays.length == 0;
     }
 
     public static String toString(Collection collection, String sperator) {
-        if (collection == null) {
+        if (collection == null)
             return null;
-        }
         StringBuilder sb = new StringBuilder();
         int i = 0;
         for (Object o : collection) {
-            if (i > 0) {
+            if (i > 0)
                 sb.append(sperator);
-            }
             sb.append(o);
             i++;
         }
@@ -74,15 +66,13 @@ public class FCollectionUtils {
     }
 
     public static <T> String toString(T[] collection, String sperator) {
-        if (collection == null) {
+        if (collection == null)
             return null;
-        }
         StringBuilder sb = new StringBuilder();
         int i = 0;
         for (Object o : collection) {
-            if (i > 0) {
+            if (i > 0)
                 sb.append(sperator);
-            }
             sb.append(o);
             i++;
         }
@@ -90,15 +80,13 @@ public class FCollectionUtils {
     }
 
     public static String toString(Collection collection, StringConvertor convertor, String sperator) {
-        if (collection == null) {
+        if (collection == null)
             return null;
-        }
         StringBuilder sb = new StringBuilder();
         int i = 0;
         for (Object o : collection) {
-            if (i > 0) {
+            if (i > 0)
                 sb.append(sperator);
-            }
             sb.append(convertor.toString(o));
             i++;
         }
@@ -106,19 +94,13 @@ public class FCollectionUtils {
     }
 
     public static <T> int find(final T[] data, final T value) {
-        if (data != null) {
-            for (int i = 0; i < data.length; i++) {
+        if (data != null)
+            for (int i = 0; i < data.length; i++)
                 if (value == null) {
-                    if (data[i] == null) {
+                    if (data[i] == null)
                         return i;
-                    }
-                } else {
-                    if (value.equals(data[i])) {
-                        return i;
-                    }
-                }
-            }
-        }
+                } else if (value.equals(data[i]))
+                    return i;
         return -1;
     }
 
@@ -141,9 +123,8 @@ public class FCollectionUtils {
     }
 
     public static <T, K> T firstValue(Map<K, T> map) {
-        if (map.isEmpty()) {
+        if (map.isEmpty())
             return null;
-        }
         return map.entrySet().iterator().next().getValue();
     }
 
@@ -151,50 +132,69 @@ public class FCollectionUtils {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         for (Object it : list) {
-            if (i++ > 0) {
+            if (i++ > 0)
                 sb.append(sperator);
-            }
             sb.append(it);
         }
         return sb.toString();
     }
-    
+
     public static String join(Object[] list, String sperator) {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         for (Object it : list) {
-            if (i++ > 0) {
+            if (i++ > 0)
                 sb.append(sperator);
-            }
             sb.append(it);
         }
         return sb.toString();
     }
-    
+
     public static String joinValues(Map list, String sperator) {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         for (Object it : list.values()) {
-            if (i++ > 0) {
+            if (i++ > 0)
                 sb.append(sperator);
-            }
             sb.append(it);
         }
         return sb.toString();
     }
-    
+
     public static String joinKeys(Map list, String sperator) {
         StringBuilder sb = new StringBuilder();
         int i = 0;
         for (Object it : list.keySet()) {
-            if (i++ > 0) {
+            if (i++ > 0)
                 sb.append(sperator);
-            }
             sb.append(it);
         }
         return sb.toString();
     }
-    
+
+    public static <S, D> Collection<D> copy(Collection<S> surse, Copy<S, D> doCopy) {
+        Collection<D> create = doCopy.create();
+        for (S s : surse)
+            create.add(doCopy.item(s));
+
+        return create;
+    }
+
+    public static interface Copy<S, D> {
+
+        Collection<D> create();
+
+        D item(S s);
+    }
+
+    public static <K> HashMapBuilder<K, Object> createMapBuilder() {
+        return new HashMapBuilder<>();
+    }
+
+    public static <K, V> HashMapBuilder<K, V> createMapBuilder1() {
+        return new HashMapBuilder<>();
+    }
+
     public static class HashMapBuilder<K, V> {
 
         private Map<K, V> map = new HashMap<>();

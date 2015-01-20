@@ -14,13 +14,31 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-package mn.le.farcek.common.objects;
+package mn.le.farcek.common.bean;
 
 /**
  *
  * @author Farcek
  */
-public interface FActivedObject {
-    public Boolean getActive();
+public class NoSuchPropertyException extends Exception{
+
+    public NoSuchPropertyException() {
+    }
+
+    public NoSuchPropertyException(String message) {
+        super(message);
+    }
+
+    public NoSuchPropertyException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public NoSuchPropertyException(Throwable cause) {
+        super(cause);
+    }
+
+    public NoSuchPropertyException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+    
 }

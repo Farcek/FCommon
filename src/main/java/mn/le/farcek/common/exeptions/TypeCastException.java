@@ -14,13 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-package mn.le.farcek.common.objects;
+package mn.le.farcek.common.exeptions;
 
 /**
  *
  * @author Farcek
  */
-public interface FActivedObject {
-    public Boolean getActive();
+public class TypeCastException extends ClassCastException {
+
+    public TypeCastException() {
+    }
+
+    public TypeCastException(String s) {
+        super(s);
+    }
 }
